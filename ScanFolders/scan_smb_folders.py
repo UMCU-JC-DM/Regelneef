@@ -23,19 +23,17 @@ def scan_directory_smb(conn, share_name, path):
 
 if __name__ == "__main__":
     server_name = "ds.umcutrecht.nl"
-    share_name = "DATA"
-    starting_directory = "JC/Datamanagement/Projecten/A new project/"  # Starting directory within the share
-
+    share_name = "Home"
+    starting_directory = "JC/Datamanagement/Projecten/A new project"  # Starting directory within the share
     # Prompt for username and password
-    username = input("Enter your SMB username: ")
-    password = getpass.getpass("Enter your SMB password: ")
+    username = input("Enter your username: ")
+    password = getpass.getpass("Enter your password: ")
 
     try:
         conn = SMBConnection(username, password, "python-client", server_name, domain="DS", use_ntlm_v2=True, is_direct_tcp=True)
         assert conn.connect(server_name, 445)
 
         folder_structure = scan_directory_smb(conn, share_name, starting_directory)
-
         with open("scanned_folder_structure.json", "w") as f:
             json.dump({"root": os.path.basename(starting_directory.rstrip('/')), "directories": folder_structure["subdirectories"]}, f, indent=4)
 
