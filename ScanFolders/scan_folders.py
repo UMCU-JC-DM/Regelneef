@@ -16,7 +16,7 @@ def scan_directory(path):
     return folder_structure
 
 if __name__ == "__main__":
-    start_path = "path/to/your/start/directory"  # Replace with the starting directory path
+    start_path = "/Users/mpadrosg/Source/ANewProject"  # Replace with the starting directory path
     folder_structure = scan_directory(start_path)
 
     with open("scanned_folder_structure.json", "w") as f:

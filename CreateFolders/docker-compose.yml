@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  folder_creator:
+    image: folder_creator
+    build: .
+    environment:
+      - BASE_PATH=/app/folders
+    volumes:
+      - /Users/mpadrosg/Documenten/testfolder:/app/folders
+    command: python /app/create_folders.py

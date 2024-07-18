@@ -23,8 +23,8 @@ def scan_directory_smb(conn, share_name, path):
 
 if __name__ == "__main__":
     server_name = "ds.umcutrecht.nl"
-    share_name = "Home"
-    starting_directory = "JC/Datamanagement/Projecten/A new project"  # Starting directory within the share
+    share_name = "DATA"
+    starting_directory = "JC"#/Datamanagement/Projecten/A new project"  # Starting directory within the share
     # Prompt for username and password
     username = input("Enter your username: ")
     password = getpass.getpass("Enter your password: ")
