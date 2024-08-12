@@ -6,6 +6,7 @@ services:
     build: .
     environment:
       - BASE_PATH=/app/folders
+      - ROOT_FOLDER=TestProjectDocker  # Pass the root folder name here
     volumes:
       - /Users/mpadrosg/Documenten/testfolder:/app/folders
     command: python /app/create_folders.py
