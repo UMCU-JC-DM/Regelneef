@@ -10,6 +10,8 @@ class NewUploadHandler(FileSystemEventHandler):
             print(f"New upload directory detected: {event.src_path}")
             # Wait until all files in the directory are stable
             self.wait_for_stable_files(event.src_path)
+            print(event.src_path)
+            self.check_instructions_file(event.src_path)
             process_upload(event.src_path)
 
     def wait_for_stable_files(self, directory_path):
