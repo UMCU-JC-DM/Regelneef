@@ -56,7 +56,7 @@ if __name__ == '__main__':
             exit(1)
 
     # Process the root directory
-    root_name = folder_structure.get('root', 'Root')
+    root_name = root_folder
     root_path = os.path.join(base_path, root_name)
     if not os.path.exists(root_path):
         os.makedirs(root_path)

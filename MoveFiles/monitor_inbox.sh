@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INBOX_DIR="/path/to/inbox"  # Replace with the actual directory to watch
+INBOX_DIR="/inbox"  # Replace with the actual directory to watch
 
 inotifywait -m -e create "$INBOX_DIR" --format '%w%f' | while read NEW_UPLOAD_DIR
 do

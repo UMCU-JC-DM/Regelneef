@@ -1,0 +1,242 @@
+{
+    "target_structure": {
+        "root": "/destination/ANewProject",
+        "directories": [
+            {
+                "name": "04 Data delivery",
+                "subdirectories": [
+                    {
+                        "name": "Final datasets",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Reports",
+                        "subdirectories": []
+                    }
+                ]
+            },
+            {
+                "name": "07 Archive",
+                "subdirectories": [
+                    {
+                        "name": "Archive documentation",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "SQL server backup",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "TF digital archive",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Entry issue log",
+                        "subdirectories": []
+                    }
+                ]
+            },
+            {
+                "name": "06 Logistics and planning",
+                "subdirectories": [
+                    {
+                        "name": "Documents",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "DBM",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Other applications",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Recrutement",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Reports",
+                        "subdirectories": []
+                    }
+                ]
+            },
+            {
+                "name": "02 Data collection",
+                "subdirectories": [
+                    {
+                        "name": "Randomisation",
+                        "subdirectories": [
+                            {
+                                "name": "Intake",
+                                "subdirectories": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Research Online",
+                        "subdirectories": [
+                            {
+                                "name": "Digital copy of designed forms",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Source documents",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "IP",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Flows",
+                                "subdirectories": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "General",
+                        "subdirectories": [
+                            {
+                                "name": "Meta data",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "DVP",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Test documentation",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "User management",
+                                "subdirectories": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Teleform",
+                        "subdirectories": [
+                            {
+                                "name": "Digital copy of designed forms",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Source documents",
+                                "subdirectories": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "DBM",
+                        "subdirectories": [
+                            {
+                                "name": "Source documents",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "IP",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Flows",
+                                "subdirectories": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Other applications",
+                        "subdirectories": [
+                            {
+                                "name": "Source documents",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "IP",
+                                "subdirectories": []
+                            },
+                            {
+                                "name": "Flows",
+                                "subdirectories": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "03 Data processing",
+                "subdirectories": [
+                    {
+                        "name": "Source data",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Syntax",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Processed data",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Reports",
+                        "subdirectories": []
+                    }
+                ]
+            },
+            {
+                "name": "05 External data processing",
+                "subdirectories": [
+                    {
+                        "name": "Syntax",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Data",
+                        "subdirectories": []
+                    }
+                ]
+            },
+            {
+                "name": "01 General",
+                "subdirectories": [
+                    {
+                        "name": "Project Log",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Official documents",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Presentations",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Newsletter",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "Email",
+                        "subdirectories": []
+                    },
+                    {
+                        "name": "METC",
+                        "subdirectories": []
+                    }
+                ]
+            }
+        ]
+    },
+    "moves": [
+        {
+            "source": "datafile1.csv",
+            "destination": "/destination/ANewProject/03 Data processing/Source data/datafile1.csv"
+        },
+        {
+            "source": "datafile2.txt",
+            "destination": "/destination/ANewProject/01 General/Newsletter/datafile2.txt"
+        }
+    ]
+}

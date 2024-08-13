@@ -8,5 +8,5 @@ services:
       - BASE_PATH=/app/folders
       - ROOT_FOLDER=TestProjectDocker  # Pass the root folder name here
     volumes:
-      - /Users/mpadrosg/Documenten/testfolder:/app/folders
+      - /Users/mpadrosg/Documenten/:/app/folders
     command: python /app/create_folders.py
