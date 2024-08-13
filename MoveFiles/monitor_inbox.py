@@ -17,6 +17,7 @@ class NewUploadHandler(FileSystemEventHandler):
         Wait until the files in the directory have finished copying by checking if
         their sizes stabilize over time.
         """
+        print(f"Waiting for files to stabilize in: {directory_path}")
         stable = False
         while not stable:
             stable = True
@@ -32,6 +33,19 @@ class NewUploadHandler(FileSystemEventHandler):
                         break
                 if not stable:
                     break
+        print(f"Files have stabilized in: {directory_path}")
+
+    def check_instructions_file(self, directory_path):
+        """
+        Ensure the instructions.json file exists and is readable.
+        """
+        instructions_path = os.path.join(directory_path, 'instructions.json')
+        if os.path.exists(instructions_path):
+            print(f"instructions.json found at: {instructions_path}")
+            return instructions_path
+        else:
+            print(f"Error: instructions.json not found in {directory_path}")
+            return None
 
 if __name__ == "__main__":
     INBOX_DIR = '/inbox'  # Replace with the actual inbox directory path
