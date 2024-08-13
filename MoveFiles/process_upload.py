@@ -1,6 +1,6 @@
 import json
-import shutil
 import os
+import shutil
 
 def create_directories(base_path, directories):
     for directory in directories:
@@ -26,18 +26,10 @@ def process_upload(upload_dir):
     for instruction in instructions.get('moves', []):
         src = os.path.join(upload_dir, instruction['source'])
         dest = instruction['destination']
-        
-        # Ensure destination directory exists
+
+        # Ensure the destination directory exists
         os.makedirs(os.path.dirname(dest), exist_ok=True)
-        
+
         # Move the file
         shutil.move(src, dest)
         print(f"Moved: {src} -> {dest}")
-
-if __name__ == "__main__":
-    INBOX_DIR = '/inbox'  # Update with the actual inbox directory
-    
-    for upload_dir in os.listdir(INBOX_DIR):
-        full_path = os.path.join(INBOX_DIR, upload_dir)
-        if os.path.isdir(full_path):
-            process_upload(full_path)
