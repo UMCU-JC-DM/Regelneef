@@ -42,6 +42,7 @@ class NewUploadHandler(FileSystemEventHandler):
         Ensure the instructions.json file exists and is readable.
         """
         instructions_path = os.path.join(directory_path, 'instructions.json')
+        time.sleep(10)
         print(os.listdir(directory_path))
         if os.path.exists(instructions_path):
             print(f"instructions.json found at: {instructions_path}")
