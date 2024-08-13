@@ -14,7 +14,7 @@ COPY . /app
 # RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the supervisor configuration file
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./MoveFiles/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Run supervisor when the container launches
 CMD ["/usr/bin/supervisord"]
