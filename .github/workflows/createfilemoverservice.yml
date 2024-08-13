@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v5.2.0
         with:
           context: .
-          file: ./Dockerfile
+          file: ./MoveFiles/Dockerfile
           push: true
           tags: mpadros/filemoverservice:latest
           labels: ${{ steps.meta.outputs.labels }}
