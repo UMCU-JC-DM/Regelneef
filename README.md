@@ -6,9 +6,14 @@
 
 == Background
 
-The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care. To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data, where some preprocessing has already taken place. This system will facilitate the secure distribution of these datasets to authorized research environments and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
+The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care.
+To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data,
+where some preprocessing has already taken place. This system will facilitate the secure distribution of these datasets to authorized
+research environments and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
 
-This system will primarily serve two types of users: data engineers, who are responsible for dataset generation, and academic researchers, who will use the datasets for analysis. Initially, the system will support 10 data engineers and 100 researchers.
+This system will primarily serve two types of users: data engineers, who are responsible for dataset generation,
+and academic researchers, who will use the datasets for analysis.
+Initially, the system will support 10 data engineers and 100 researchers.
 
 == Requirements
 
