@@ -2,7 +2,7 @@
 = SPEC-001: Dataset Generation and Distribution Orchestration System
 :sectnums:
 :toc:
-
+:toc-placement!:
 
 == Background
 
@@ -14,6 +14,8 @@ research environments and ensure that a comprehensive audit trail is maintained 
 This system will primarily serve two types of users: data engineers, who are responsible for dataset generation,
 and academic researchers, who will use the datasets for analysis.
 Initially, the system will support 10 data engineers and 100 researchers.
+
+toc::[]
 
 == Requirements
 
