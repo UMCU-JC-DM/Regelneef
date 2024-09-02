@@ -5,29 +5,36 @@
 
 == Background
 
-The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care. To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data, where some preprocessing has already taken place. This system will facilitate the secure distribution of these datasets to authorized research environments and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
+The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care. To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data, where some preprocessing has already taken place within an organization's secure domain. This system will then facilitate the secure distribution of these datasets to authorized research environments via a central system and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
+
+The system comprises two major components:
+- **Internal Modules**: Operating within the organization's domain, responsible for data ingestion, preprocessing, and dataset generation.
+- **Central System**: Handling dataset requests, managing access control, distributing datasets to external research environments, and maintaining detailed audit logs.
+
+These components will communicate through a secure API to ensure seamless and controlled data flow.
 
 This system will primarily serve two types of users: data engineers, who are responsible for dataset generation, and academic researchers, who will use the datasets for analysis. Initially, the system will support 10 data engineers and 100 researchers.
 
 == Requirements
 
 *Must Have*
-- The system must generate structured datasets from a unified data model of healthcare data, leveraging preprocessed data.
-- The system must provide role-based access control, limiting dataset access to authorized users (data engineers and researchers).
-- The system must maintain detailed audit trails, including metadata such as:
+- The internal modules must generate structured datasets from a unified data model of healthcare data, leveraging preprocessed data within the organization's domain.
+- The central system must provide role-based access control, limiting dataset access to authorized users (data engineers and researchers).
+- The central system must maintain detailed audit trails, including metadata such as:
   - Software versions used for dataset generation.
   - User information (who created the dataset, who accessed it).
   - Timestamps (when the dataset was created, modified, accessed).
   - Purpose of dataset creation and distribution.
   - Dataset distribution logs (where the data was sent, why, and to whom).
-- The system must be scalable to handle large datasets.
+- The system must include a secure API for communication between internal modules and the central system.
+- The system must be scalable to handle large datasets and multiple users.
 
 *Should Have*
-- The system should provide an interface for data engineers to manage the dataset generation process.
-- The system should support logging and monitoring for operational visibility.
+- The central system should provide an interface for data engineers to manage dataset generation requests.
+- The central system should support logging and monitoring for operational visibility.
 
 *Could Have*
-- The system could integrate with existing data storage solutions.
+- The system could integrate with existing data storage solutions within the organization.
 - The system could support automated notifications when datasets are distributed.
 
 *Won't Have*
@@ -35,14 +42,37 @@ This system will primarily serve two types of users: data engineers, who are res
 
 == Method
 
-### Key Components
-1. **Data Ingestion and Preprocessing Module**
-2. **Dataset Generation Engine**
-3. **Access Control and Authentication**
-4. **Audit Trail and Logging Service**
-5. **Dataset Distribution Module**
-6. **User Interface**
-7. **Monitoring and Alerting**
+### Internal Modules (Within the Organization's Domain)
+1. **Data Ingestion and Preprocessing Module:**
+   - Integrates with the unified data model within the organization's secure environment to preprocess the necessary data.
+   - Provides an API endpoint for the Dataset Generation Engine to request preprocessed data.
+2. **Dataset Generation Engine:**
+   - Generates structured datasets from the preprocessed data, following specifications provided by data engineers.
+   - Provides an API endpoint for the central system to request generated datasets.
+
+### Central System (Distribution and Access Control)
+1. **Central Dataset Distribution System:**
+   - Manages dataset requests from researchers, fetches generated datasets via the API, and handles distribution to authorized research environments.
+   - Communicates with the internal modules through secure API calls.
+2. **Access Control and Authentication:**
+   - Manages user authentication and enforces role-based access control.
+3. **Audit Trail and Logging Service:**
+   - Centralized logging of all significant actions for compliance and traceability.
+4. **User Interface:**
+   - Provides a web-based interface for data engineers to submit dataset generation requests and for researchers to access datasets.
+
+### API Communication Flow
+
+1. **Internal API (Within Organization):**
+   - Data Ingestion and Preprocessing Module API:
+     - Endpoint to provide preprocessed data to the Dataset Generation Engine.
+   - Dataset Generation Engine API:
+     - Endpoint to provide generated datasets to the Central System.
+  
+2. **Central API (Between Central System and Internal Modules):**
+   - Central System API:
+     - Endpoint to request generated datasets from the Dataset Generation Engine.
+     - Endpoint to manage dataset requests and access control.
 
 ### Proposed Architecture Diagram
 
@@ -52,22 +82,20 @@ actor DataEngineer as DE
 actor Researcher as R
 
 DE -> DatasetGenerationEngine : Create Dataset Request
-DatasetGenerationEngine -> DataIngestionPreprocessing : Access Preprocessed Data
-DataIngestionPreprocessing --> DatasetGenerationEngine : Data
-DatasetGenerationEngine -> AuditTrailService : Log Dataset Creation
-DatasetGenerationEngine -> AccessControl : Verify Access Permissions
-AccessControl --> DatasetGenerationEngine : Access Granted
-DatasetGenerationEngine -> DatasetDistributionModule : Request Dataset Distribution
+DatasetGenerationEngine -> DataIngestionPreprocessing : API Request for Preprocessed Data
+DataIngestionPreprocessing --> DatasetGenerationEngine : Preprocessed Data
+DatasetGenerationEngine -> CentralSystem : API Request to Send Generated Dataset
+CentralSystem -> AuditTrailService : Log Dataset Receipt
 
-DatasetDistributionModule -> AccessControl : Verify Distribution Permissions
-AccessControl --> DatasetDistributionModule : Access Granted
-DatasetDistributionModule -> ResearchEnv : Distribute Dataset
-DatasetDistributionModule -> AuditTrailService : Log Distribution Details
+CentralSystem -> AccessControl : Verify Distribution Permissions
+AccessControl --> CentralSystem : Access Granted
+CentralSystem -> ResearchEnv : Distribute Dataset
+CentralSystem -> AuditTrailService : Log Distribution Details
 
-R -> DatasetDistributionModule : Request Dataset Access
-DatasetDistributionModule -> AccessControl : Verify Access Permissions
-AccessControl --> DatasetDistributionModule : Access Granted
-DatasetDistributionModule -> AuditTrailService : Log Access Details
+R -> CentralSystem : Request Dataset Access
+CentralSystem -> AccessControl : Verify Access Permissions
+AccessControl --> CentralSystem : Access Granted
+CentralSystem -> AuditTrailService : Log Access Details
 
 R -> ResearchEnv : Access & Analyze Data
 ResearchEnv -> AuditTrailService : Log Researcher Access
