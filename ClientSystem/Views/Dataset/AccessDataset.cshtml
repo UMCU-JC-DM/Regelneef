@@ -1,0 +1,40 @@
+@model IEnumerable<ClientSystem.Models.Dataset>
+
+@{
+    ViewData["Title"] = "Access Datasets";
+}
+
+<h1>Access Datasets in Secure Processing Environment</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Dataset ID</th>
+            <th>Data Source</th>
+            <th>Status</th>
+            <th>Access</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dataset in Model)
+        {
+            <tr>
+                <td>@dataset.DatasetId</td>
+                <td>@dataset.DataSource</td>
+                <td>@dataset.Status</td>
+                <td>
+                    @if (dataset.Status == "Delivered")
+                    {
+                        <a class="btn btn-primary" href="@Url.Action("Access", "SPE", new { id = dataset.DatasetId })">Access in SPE</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Not Available</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Back to Home</a>

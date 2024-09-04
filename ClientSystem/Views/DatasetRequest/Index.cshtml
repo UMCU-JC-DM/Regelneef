@@ -1,0 +1,31 @@
+@model IEnumerable<ClientSystem.Models.DatasetRequest>
+
+@{
+    ViewData["Title"] = "Dataset Requests";
+}
+
+<h1>Dataset Requests</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Dataset Type</th>
+            <th>Status</th>
+            <th>Requested At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.DatasetRequestId</td>
+                <td>@request.DatasetType</td>
+                <td>@request.Status</td>
+                <td>@request.RequestedAt.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="DatasetRequest" asp-action="Create">New Dataset Request</a>
