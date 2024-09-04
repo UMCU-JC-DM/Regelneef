@@ -16,10 +16,12 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseHsts();  // Keep HSTS enabled even without HTTPS redirection in development.
 }
 
-app.UseHttpsRedirection();
+// Comment out or remove HTTPS redirection
+// app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
