@@ -101,3 +101,51 @@ R -> ResearchEnv : Access & Analyze Data
 ResearchEnv -> AuditTrailService : Log Researcher Access
 
 @enduml
+
+### proposed flow diagram
+              +---------------------------------------------------+
+              |                        Client                     |
+              |---------------------------------------------------|
+              |                                                   |
+              | 1. Sends request to generate a dataset            |
+              |     (Initiated by Data Engineer or Researcher)     |
+              +---------------------------------------------------+
+                                |
+                                v
+              +---------------------------------------------------+
+              |                    Central System                |
+              |---------------------------------------------------|
+              |                                                   |
+              | 2. Check if User exists or needs creation         |
+              | 3. Forward dataset creation request to Internal   |
+              |    Modules                                        |
+              |                                                   |
+              | 4. Log audit trail (who requested dataset, etc.)  |
+              +---------------------------------------------------+
+                              |
+                              v
+              +---------------------------------------------------+
+              |              Internal Modules (Secure)            |
+              |---------------------------------------------------|
+              | 5. Fetch preprocessed data for generation         |
+              | 6. Generate the dataset                           |
+              | 7. Send dataset directly to the Secure Processing |
+              |    Environment (SPE)                              |
+              |---------------------------------------------------|
+                              |
+                              v
++-------------------------------------------------------------+
+| Central System (Audit Logging & Access Control)              |
+|-------------------------------------------------------------|
+| 8. Logs the dataset delivery to SPE (timestamp, user, etc.) |
+| 9. Monitor access requests (initiated from the SPE)         |
++-------------------------------------------------------------+
+                              |
+                              v
+                +-----------------------------------+
+                | Secure Processing Environment     |
+                |-----------------------------------|
+                | 10. Dataset is available for      |
+                |     Researchers to access         |
+                | 11. Researchers perform analysis  |
+                +-----------------------------------+
