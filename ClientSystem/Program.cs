@@ -16,19 +16,19 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();  // Keep HSTS enabled even without HTTPS redirection in development.
+    app.UseHsts();
 }
 
-// Comment out or remove HTTPS redirection
-// app.UseHttpsRedirection();
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
+// Map default route for controller actions
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");  // Default route to Home controller and Index action
+
 app.Run();

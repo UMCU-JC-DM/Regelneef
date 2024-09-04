@@ -24,7 +24,8 @@ namespace ClientSystem.Controllers
         // GET: DatasetRequest/Create
         public IActionResult Create()
         {
-            return View();
+            DatasetRequest datasetRequest = new DatasetRequest();
+            return View(datasetRequest);
         }
 
         // POST: DatasetRequest/Create

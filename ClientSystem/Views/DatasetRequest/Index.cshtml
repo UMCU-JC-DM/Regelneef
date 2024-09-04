@@ -6,8 +6,8 @@
 
 <h1>Dataset Requests</h1>
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
         <tr>
             <th>Request ID</th>
             <th>Dataset Type</th>
@@ -29,3 +29,4 @@
 </table>
 
 <a class="btn btn-primary" asp-controller="DatasetRequest" asp-action="Create">New Dataset Request</a>
+    <a class="btn btn-primary btn-lg" href="@Url.Action("Create", "DatasetRequest")" role="button">New Dataset Request</a>
