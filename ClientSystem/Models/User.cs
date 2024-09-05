@@ -5,6 +5,8 @@ namespace ClientSystem.Models
         public int UserId { get; set; }  // Primary Key
         public string Username { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;  // Data Engineer, Researcher
-        public DateTime LastLogin { get; set; }
+        public DateTime LastLogin { get; set; } = DateTime.UtcNow;
+        // Navigation property
+        public ICollection<DatasetRequest> DatasetRequests { get; set; } = new List<DatasetRequest>();
     }
 }

@@ -11,10 +11,14 @@
         <label for="DatasetType" class="form-label">Dataset Type</label>
         <input type="text" class="form-control" id="DatasetType" name="DatasetType" value="@Model.DatasetType" required />
     </div>
+
     <div class="mb-3">
-        <label for="RequestedBy" class="form-label">Requested By (User ID)</label>
-        <input type="number" class="form-control" id="RequestedBy" name="RequestedBy" value="@Model.RequestedBy" required />
+        <label for="RequestedBy" class="form-label">Requested By</label>
+        <select asp-for="RequestedBy" class="form-select" asp-items="ViewBag.Users">
+            <option value="">Select a User</option>
+        </select>
     </div>
+
     <button type="submit" class="btn btn-primary">Submit Request</button>
 </form>
 

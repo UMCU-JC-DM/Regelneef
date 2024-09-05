@@ -1,0 +1,31 @@
+@model IEnumerable<ClientSystem.Models.User>
+
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h1>User List</h1>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Last Login</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.Username</td>
+                <td>@user.Role</td>
+                <td>@user.LastLogin.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="User" asp-action="Create">Register New User</a>

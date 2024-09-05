@@ -1,0 +1,24 @@
+@model ClientSystem.Models.User
+
+@{
+    ViewData["Title"] = "Register New User";
+}
+
+<h1>Register New User</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="Username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="Username" name="Username" value="@Model.Username" required />
+    </div>
+    <div class="mb-3">
+        <label for="Role" class="form-label">Role</label>
+        <select class="form-select" id="Role" name="Role">
+            <option value="Data Engineer">Data Engineer</option>
+            <option value="Researcher">Researcher</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<a class="btn btn-secondary" asp-controller="User" asp-action="Index">Back to List</a>

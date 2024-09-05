@@ -137,3 +137,5 @@
 /Users/mpadrosg/Source/Regelneef/CentralSystem/obj/Debug/net8.0/CentralSystem.pdb
 /Users/mpadrosg/Source/Regelneef/CentralSystem/obj/Debug/net8.0/CentralSystem.genruntimeconfig.cache
 /Users/mpadrosg/Source/Regelneef/CentralSystem/obj/Debug/net8.0/ref/CentralSystem.dll
+/Users/mpadrosg/Source/Regelneef/CentralSystem/bin/Debug/net8.0/libman.json
+/Users/mpadrosg/Source/Regelneef/CentralSystem/bin/Debug/net8.0/CentralSystem.staticwebassets.runtime.json
