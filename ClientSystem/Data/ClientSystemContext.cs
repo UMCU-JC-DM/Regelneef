@@ -17,12 +17,12 @@ namespace ClientSystem.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Set up the one-to-many relationship between User and DatasetRequest
+            // Explicitly define the foreign key relationship
             modelBuilder.Entity<DatasetRequest>()
                 .HasOne(dr => dr.RequestedByUser)  // Navigation property
-                .WithMany(u => u.DatasetRequests) // Each User has many DatasetRequests
-                .HasForeignKey(dr => dr.RequestedBy) // Foreign key in DatasetRequest
-                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete
+                .WithMany(u => u.DatasetRequests) // One user can have many dataset requests
+                .HasForeignKey(dr => dr.RequestedBy)  // Foreign key is RequestedBy in DatasetRequest
+                .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading deletes
         }
 
 

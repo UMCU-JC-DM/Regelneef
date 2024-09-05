@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ClientSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,18 +57,17 @@ namespace ClientSystem.Migrations
                     RequestedBy = table.Column<int>(type: "int", nullable: false),
                     DatasetType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RequestedByUserUserId = table.Column<int>(type: "int", nullable: false)
+                    RequestedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DatasetRequests", x => x.DatasetRequestId);
                     table.ForeignKey(
-                        name: "FK_DatasetRequests_Users_RequestedByUserUserId",
-                        column: x => x.RequestedByUserUserId,
+                        name: "FK_DatasetRequests_Users_RequestedBy",
+                        column: x => x.RequestedBy,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -99,9 +98,9 @@ namespace ClientSystem.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DatasetRequests_RequestedByUserUserId",
+                name: "IX_DatasetRequests_RequestedBy",
                 table: "DatasetRequests",
-                column: "RequestedByUserUserId");
+                column: "RequestedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Datasets_DatasetRequestId",

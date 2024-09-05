@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CentralSystem.Migrations
 {
     [DbContext(typeof(CentralSystemContext))]
-    [Migration("20240902133644_InitialMigrationWithCorrectForeignKeys")]
-    partial class InitialMigrationWithCorrectForeignKeys
+    [Migration("20240905095408_newmigration")]
+    partial class newmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

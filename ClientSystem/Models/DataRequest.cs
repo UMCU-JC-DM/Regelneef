@@ -7,6 +7,6 @@ namespace ClientSystem.Models
         public string DatasetType { get; set; } = string.Empty;
         public string Status { get; set; } = "Pending";  // Status (Pending, Processing, Done)
         public DateTime RequestedAt { get; set; } = DateTime.UtcNow;
-        public User RequestedByUser { get; set; } = null!;
+        public User? RequestedByUser { get; set; } = null!;
     }
 }

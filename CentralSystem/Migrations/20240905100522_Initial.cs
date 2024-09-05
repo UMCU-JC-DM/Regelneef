@@ -5,7 +5,7 @@
 namespace CentralSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDatasetRequestUserRelationship : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

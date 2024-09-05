@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CentralSystem.Migrations
 {
     [DbContext(typeof(CentralSystemContext))]
-    [Migration("20240905090419_UpdateDatasetRequestUserRelationship")]
-    partial class UpdateDatasetRequestUserRelationship
+    [Migration("20240905100522_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

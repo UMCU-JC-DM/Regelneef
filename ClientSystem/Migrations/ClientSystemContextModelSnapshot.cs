@@ -98,16 +98,13 @@ namespace ClientSystem.Migrations
                     b.Property<int>("RequestedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequestedByUserUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DatasetRequestId");
 
-                    b.HasIndex("RequestedByUserUserId");
+                    b.HasIndex("RequestedBy");
 
                     b.ToTable("DatasetRequests");
                 });
@@ -161,12 +158,17 @@ namespace ClientSystem.Migrations
             modelBuilder.Entity("ClientSystem.Models.DatasetRequest", b =>
                 {
                     b.HasOne("ClientSystem.Models.User", "RequestedByUser")
-                        .WithMany()
-                        .HasForeignKey("RequestedByUserUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("DatasetRequests")
+                        .HasForeignKey("RequestedBy")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("RequestedByUser");
+                });
+
+            modelBuilder.Entity("ClientSystem.Models.User", b =>
+                {
+                    b.Navigation("DatasetRequests");
                 });
 #pragma warning restore 612, 618
         }
