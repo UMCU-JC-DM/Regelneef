@@ -1,6 +1,6 @@
 {
     "target_structure": {
-        "root": "/destination/ANewProject",
+        "root": "/mnt/data/destination/ANewProject",
         "directories": [
             {
                 "name": "04 Data delivery",
@@ -232,11 +232,11 @@
     "moves": [
         {
             "source": "datafile1.csv",
-            "destination": "/destination/ANewProject/04 Data delivery/Final datasets/datafile1.csv"
+            "destination": "/mnt/data/destination/ANewProject/04 Data delivery/Final datasets/datafile1.csv"
         },
         {
             "source": "datafile2.csv",
-            "destination": "/destination/ANewProject/07 Archive/Archive documentation/datafile2.csv"
+            "destination": "/mnt/data/destination/ANewProject/07 Archive/Archive documentation/datafile2.csv"
         }
     ]
 }
