@@ -52,7 +52,7 @@ class NewUploadHandler(FileSystemEventHandler):
             return None
 
 if __name__ == "__main__":
-    INBOX_DIR = '/mnt/data/inbox'  # Replace with the actual inbox directory path
+    INBOX_DIR = '/mnt/data/inboxs'  # Replace with the actual inbox directory path
 
     # Validate the inbox directory
     if not os.path.exists(INBOX_DIR):
