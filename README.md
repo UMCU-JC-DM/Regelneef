@@ -1,25 +1,16 @@
-```asciidoc
-= SPEC-001: Dataset Generation and Distribution Orchestration System
-:sectnums:
-:toc:
-:toc-placement!:
+# Dataset Generation and Distribution Orchestration System
 
-== Background
+## Background
 
-The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care.
-To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data,
-where some preprocessing has already taken place. This system will facilitate the secure distribution of these datasets to authorized
-research environments and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
+The healthcare sector is increasingly relying on data-driven research to advance medical knowledge and patient care.  
+To support these efforts, a system is required to orchestrate the generation of structured datasets from a unified data model of healthcare data, where some preprocessing has already taken place. This system will facilitate the secure distribution of these datasets to authorized research environments and ensure that a comprehensive audit trail is maintained for regulatory compliance and transparency.
 
-This system will primarily serve two types of users: data engineers, who are responsible for dataset generation,
-and academic researchers, who will use the datasets for analysis.
+This system will primarily serve two types of users: data engineers, who are responsible for dataset generation, and academic researchers, who will use the datasets for analysis.  
 Initially, the system will support 10 data engineers and 100 researchers.
 
-toc::[]
+## Requirements
 
-== Requirements
-
-*Must Have*
+### Must Have
 - The system must generate structured datasets from a unified data model of healthcare data, leveraging preprocessed data.
 - The system must provide role-based access control, limiting dataset access to authorized users (data engineers and researchers).
 - The system must maintain detailed audit trails, including metadata such as:
@@ -30,18 +21,18 @@ toc::[]
   - Dataset distribution logs (where the data was sent, why, and to whom).
 - The system must be scalable to handle large datasets.
 
-*Should Have*
+### Should Have
 - The system should provide an interface for data engineers to manage the dataset generation process.
 - The system should support logging and monitoring for operational visibility.
 
-*Could Have*
+### Could Have
 - The system could integrate with existing data storage solutions.
 - The system could support automated notifications when datasets are distributed.
 
-*Won't Have*
+### Won't Have
 - Data encryption is not required at this stage.
 
-== Method
+## Method
 
 ### Key Components
 1. **Data Ingestion and Preprocessing Module**
@@ -54,34 +45,34 @@ toc::[]
 
 ### Proposed Architecture Diagram
 
-```plantuml
-@startuml
-actor DataEngineer as DE
-actor Researcher as R
 
-DE -> DatasetGenerationEngine : Create Dataset Request
-DatasetGenerationEngine -> DataIngestionPreprocessing : Access Preprocessed Data
-DataIngestionPreprocessing --> DatasetGenerationEngine : Data
-DatasetGenerationEngine -> AuditTrailService : Log Dataset Creation
-DatasetGenerationEngine -> AccessControl : Verify Access Permissions
-AccessControl --> DatasetGenerationEngine : Access Granted
-DatasetGenerationEngine -> DatasetDistributionModule : Request Dataset Distribution
+```mermaid
+sequenceDiagram
+    actor DE as Data Engineer
+    actor R as Researcher
+    
+    DE ->> DatasetGenerationEngine: Create Dataset Request
+    DatasetGenerationEngine ->> DataIngestionPreprocessing: Access Preprocessed Data
+    DataIngestionPreprocessing -->> DatasetGenerationEngine: Data
+    DatasetGenerationEngine ->> AuditTrailService: Log Dataset Creation
+    DatasetGenerationEngine ->> AccessControl: Verify Access Permissions
+    AccessControl -->> DatasetGenerationEngine: Access Granted
+    DatasetGenerationEngine ->> DatasetDistributionModule: Request Dataset Distribution
 
-DatasetDistributionModule -> AccessControl : Verify Distribution Permissions
-AccessControl --> DatasetDistributionModule : Access Granted
-DatasetDistributionModule -> ResearchEnv : Distribute Dataset
-DatasetDistributionModule -> AuditTrailService : Log Distribution Details
+    DatasetDistributionModule ->> AccessControl: Verify Distribution Permissions
+    AccessControl -->> DatasetDistributionModule: Access Granted
+    DatasetDistributionModule ->> ResearchEnv: Distribute Dataset
+    DatasetDistributionModule ->> AuditTrailService: Log Distribution Details
 
-R -> DatasetDistributionModule : Request Dataset Access
-DatasetDistributionModule -> AccessControl : Verify Access Permissions
-AccessControl --> DatasetDistributionModule : Access Granted
-DatasetDistributionModule -> AuditTrailService : Log Access Details
+    R ->> DatasetDistributionModule: Request Dataset Access
+    DatasetDistributionModule ->> AccessControl: Verify Access Permissions
+    AccessControl -->> DatasetDistributionModule: Access Granted
+    DatasetDistributionModule ->> AuditTrailService: Log Access Details
 
-R -> ResearchEnv : Access & Analyze Data
-ResearchEnv -> AuditTrailService : Log Researcher Access
-
-@enduml
+    R ->> ResearchEnv: Access & Analyze Data
+    ResearchEnv ->> AuditTrailService: Log Researcher Access
 ```
+
 
 ### Database Schema
 
@@ -114,63 +105,63 @@ ResearchEnv -> AuditTrailService : Log Researcher Access
   - `distributed_at`
   - `purpose`
 
-== Implementation
+## Implementation
 
-=== Step 1: Set Up the Development Environment
+### Step 1: Set Up the Development Environment
 - Provision necessary development and staging environments.
 - Install required software and libraries (e.g., databases, web frameworks, authentication libraries).
 
-=== Step 2: Build the Data Ingestion and Preprocessing Module
+### Step 2: Build the Data Ingestion and Preprocessing Module
 - Integrate with the existing unified data model.
 - Implement data retrieval and preprocessing routines.
 - Ensure compatibility with the Dataset Generation Engine.
 
-=== Step 3: Develop the Dataset Generation Engine
+### Step 3: Develop the Dataset Generation Engine
 - Implement dataset generation logic using the preprocessed data.
 - Incorporate options for configuring dataset parameters (e.g., filters, aggregation).
 - Integrate logging to the Audit Trail Service for every dataset creation event.
 
-=== Step 4: Implement Access Control and Authentication
+### Step 4: Implement Access Control and Authentication
 - Set up user authentication mechanisms (e.g., OAuth2, JWT).
 - Develop role-based access control (RBAC) mechanisms to enforce permissions.
 - Integrate with the Dataset Generation Engine and Dataset Distribution Module.
 
-=== Step 5: Develop the Audit Trail and Logging Service
+### Step 5: Develop the Audit Trail and Logging Service
 - Create a central logging service to track all system actions.
 - Implement logging of dataset creation, access, and distribution events.
 - Ensure logs are immutable and securely stored.
 
-=== Step 6: Build the Dataset Distribution Module
+### Step 6: Build the Dataset Distribution Module
 - Develop functionality to distribute datasets to secure research environments.
 - Integrate with the Access Control system to verify permissions before distribution.
 - Log all distribution activities to the Audit Trail.
 
-=== Step 7: Develop the User Interface
+### Step 7: Develop the User Interface
 - Build a web-based interface for data engineers to manage dataset generation.
 - Create a portal for researchers to request and access datasets.
 - Ensure all actions taken via the UI are logged appropriately.
 
-=== Step 8: Set Up Monitoring and Alerting
+### Step 8: Set Up Monitoring and Alerting
 - Implement monitoring tools to track system performance and availability.
 - Set up alerting mechanisms to notify administrators of any issues or suspicious activity.
 - Ensure that all alerts are integrated with the logging service for auditing.
 
-=== Step 9: Testing and Quality Assurance
+### Step 9: Testing and Quality Assurance
 - Perform unit testing of each module to ensure individual functionality.
 - Conduct integration testing to verify the interaction between components.
 - Carry out user acceptance testing (UAT) with a sample group of data engineers and researchers.
 
-=== Step 10: Deployment and User Training
+### Step 10: Deployment and User Training
 - Deploy the system in a production environment.
 - Provide training sessions for data engineers and researchers on how to use the system.
 - Monitor initial usage to quickly address any issues.
 
-=== Step 11: Post-Deployment Monitoring and Maintenance
+### Step 11: Post-Deployment Monitoring and Maintenance
 - Continuously monitor the system for performance and security.
 - Regularly update the system to address any bugs or incorporate new features.
 - Maintain the audit trail for compliance purposes.
 
-== Milestones
+## Milestones
 
 1. **Milestone 1: Development Environment Setup**
    - Completion Criteria: All necessary environments and tools are installed and configured.
@@ -216,7 +207,7 @@ ResearchEnv -> AuditTrailService : Log Researcher Access
     - Completion Criteria: System is being monitored, and any issues are addressed promptly.
     - Ongoing
 
-== Gathering Results
+## Gathering Results
 
 After the system has been deployed, the following steps will be taken to evaluate its success:
 
@@ -247,5 +238,3 @@ After the system has been deployed, the following steps will be taken to evaluat
 7. **Final Report**
    - Compile a final report summarizing the system's performance, user feedback, and any necessary improvements.
    - Outline next steps and future enhancements.
-
-```
